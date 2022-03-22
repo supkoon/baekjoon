@@ -15,7 +15,3 @@ result = sorted(list(set(list(range(1,10001)))-set(result)))
 
 for i in result:
     print(i)
-
-
-#역추적 불가. 앞에서부터 셀프넘버 찾아야함.
-#
