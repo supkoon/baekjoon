@@ -1,13 +1,15 @@
 import sys
-a = int(input)
-
+a = int(input())
+result_ = []
 for i in range(a):
     a,b = sys.stdin.readline().split()
     a = int(a)
     result = ''
     for i in b:
         result+=a*i
+    result_.append(result)
 
-print(result)
+for i in result_:
+    print(i)
 
 
