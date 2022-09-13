@@ -31,7 +31,6 @@ def bfs():
         if left==0:
             break
         day_length = len(queue)
-        moves_day=[]
         day+=1
         for i in range(day_length):
             x,y = queue.popleft()
