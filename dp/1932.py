@@ -9,3 +9,6 @@ for i in range(1,n):
         else:
             nums[i][j]+=max(nums[i-1][j-1],nums[i-1][j])
 print(max(nums[-1]))
+
+
+
