@@ -20,30 +20,37 @@ for i in range(n):
                         break
 def bfs():
     global visited,dx,dy,graph
-
     queue = deque()
     for i,j in cheezes:
         queue.append([i,j])
-        visited[i][j]=1
-
     day=0
     while(queue):
+        result = 0
+        for i in graph:
+            result += sum(i)
+        if not result:
+            return day
         day+=1
-        print(day,queue)
         length = len(queue)
+        change_list = []
         for i in range(length):
             x,y = queue.popleft()
             cnt=0
+            add_list = []
             for d in range(4):
                 x_new,y_new = x+dx[d],y+dy[d]
-                if 0 <= x_new < n and 0 <= y_new < m and not visited[x_new][y_new]:
-                    if graph[x_new][y_new]==0:
+                if  0 <= x_new < n and 0 <= y_new < m :
+                    if not graph[x_new][y_new]:
                         cnt+=1
-                        if cnt==2:
-                            visited[x_new][y_new]=1
-                            queue.append([x_new,y_new])
-    return day
-
+                    else:
+                        add_list.append([x_new,y_new])
+            if cnt>=2:
+                visited[x][y]=1
+                change_list.append([x,y])
+                for i in add_list:
+                    queue.append(i)
+        for i,j in change_list:
+            graph[i][j]=0
 print(bfs())
 
 
