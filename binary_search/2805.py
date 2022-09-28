@@ -6,6 +6,7 @@ end = max(nums)
 
 def cut_lefted(num, thres):
     return max(0, num - thres)
+
 def binary_search(target,nums,start,end):
     if start>end:
         return end
