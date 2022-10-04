@@ -11,7 +11,6 @@ def binary_search(target,nums,start,end):
         return end
     mid = (start+end)//2
     cnt = sum(map(lambda x:x//mid,nums))
-
     if cnt >= target:
         return binary_search(target,nums,mid+1,end)
     else:
