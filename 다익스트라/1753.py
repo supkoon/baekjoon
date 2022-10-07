@@ -23,7 +23,6 @@ def dijkstra(start):
         #해당 노드의 현재 거리값이 나온것보다 이미 좋으면 이미 업데이트 된걸로 치고 패스
         if distance[now]<dist:
             continue
-
         #자식노드
         for child in graph[now]:
             #기존 + 자식까지의 거리
