@@ -35,6 +35,7 @@ def inorder(node):
     if node < n :
         inorder(node * 2)
         tree[node] = order[idx]
+        print(idx, node)
         idx +=1
         inorder(node * 2 + 1)
 
