@@ -47,6 +47,6 @@ dijkstra(start)
 
 for i in distance[1:]:
     if i==INF:
-        print('INF',' ')
+        print('INF')
     else:
-        print(i,end = ' ')
+        print(i)
