@@ -9,8 +9,11 @@
 
 아이디어
 결국 거리의 합을 최소로 만드는 집 하나를 고르는 것. 
+앞에서부터 해봄...> 안됨
 
+O(N) or O(NlogN) 필요
 
+그냥 중앙값이 답이라고함..
 
 복잡도
 
@@ -20,11 +23,6 @@
 n = int(input())
 locations = list(map(int,input().split()))
 locations = sorted(locations)
-best = 1e10
-best_loc = 0
-for loc in locations:
-    result = sum(list(map(lambda x : abs(x-loc), locations)))
-    if result < best :
-        best=result
-        best_loc = loc
-print(best_loc)
+
+print(locations[(n-1)//2])
+
