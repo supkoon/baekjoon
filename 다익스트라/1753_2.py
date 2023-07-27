@@ -6,13 +6,9 @@
 
 아이디어
 
-
 복잡도 
 
-
-
 '''
-
 import sys
 import heapq
 n,m = map(int,input().split())
@@ -41,7 +37,6 @@ def dijkstra(start):
             if cost < distance[child[0]]:
                 distance[child[0]] = cost
                 heapq.heappush(queue,[cost,child[0]])
-
 
 dijkstra(start)
 
