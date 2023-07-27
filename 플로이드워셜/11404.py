@@ -25,23 +25,23 @@ import sys
 n = int(input())
 m = int(input()) 
 
-INF = 1e6
+INF = 1e7
 distance = [[INF] * (n+1) for _ in range(n+1)]
 
 for i in range(m):
     a,b,c = map(int,sys.stdin.readline().split())
     distance[a][b] = min(c, distance[a][b])
 
+for i in range(1, n+1):
+    for j in range(1, n+1):
+        if i == j:
+            distance[i][j] = 0
 
 def floyd():
     for m in range(1,n+1):
         for s in range(1,n+1):
             for e in range(1,n+1):
-                    
-                    if s==e:
-                         distance[s][e]=0
-                    else:
-                        distance[s][e] = min(distance[s][e], distance[s][m] + distance[m][e])
+                distance[s][e] = min(distance[s][e], distance[s][m] + distance[m][e])
 floyd()
 
 
@@ -51,3 +51,4 @@ for i in range(1,n+1):
             print(0, end =' ')
         else: print(distance[i][j],end=' ')
     print()
+
