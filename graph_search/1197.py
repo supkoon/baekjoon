@@ -61,5 +61,4 @@ for edge in edges:
     if find_parent(parent,s) != find_parent(parent,e):
         union_parent(parent,s,e)
         result += w 
-
 print(result)
