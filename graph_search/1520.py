@@ -9,16 +9,13 @@
 --> 경우의 수가 다양.
 
 아이디어
-bfs?  
-
-
+bfs  + 우선순위큐(heapq) +  dp 
 
 복잡도
-
-
 '''
 import sys
 from collections import deque
+import heapq 
 graph = [] 
 n,m = map(int, sys.stdin.readline().split())
 for i in range(n):
@@ -27,29 +24,23 @@ for i in range(n):
 visited = [[0]*m for _ in range(n)]
 
 def bfs(i,j):
-    queue = deque()
+    queue = list()
+
     visited[i][j]=1
-    queue.append([i,j])
+    heapq.heappush(queue,[-graph[i][j],i,j])
+
     while(queue):
-        x,y = queue.popleft()
+        cnt,x,y = heapq.heappop(queue)
+        
         for dx,dy in [(-1,0),(1,0),(0,1),(0,-1)]:
             nx,ny = x+dx,y+dy
             if 0<=nx<n and 0<=ny<m:
                 if graph[x][y] > graph[nx][ny]:
+                    #방문을 안했으면 탐색할 큐(경로)에 추가하면서 횟수 더하기
                     if not visited[nx][ny]:
-                        queue.append([nx,ny])
-                        visited[nx][ny] = 1     
-
+                        heapq.heappush(queue,[-graph[nx][ny],nx,ny])
+                    #이미 방문 했으면 횟수만 더해주기. 
+                    visited[nx][ny] +=visited[x][y]     
+                    
 bfs(0,0)
-for x in range(n):
-    for y in range(m):
-        if visited[x][y]:
-            cnt= 0 
-            for dx,dy in [(-1,0),(1,0),(0,1),(0,-1)]:
-                nx,ny = x+dx,y+dy
-                if 0<=nx<n and 0<=ny<m and visited[nx][ny]:
-                    if graph[nx][ny] > graph[x][y]:
-                        cnt += visited[nx][ny]
-            visited[x][y] = max(1,cnt) 
-
 print(visited[n-1][m-1])
