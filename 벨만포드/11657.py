@@ -47,7 +47,7 @@ def bf(start):
     for i in range(n):
         # 매 반복마다 모든 간선을 확인 
         for j in range(m):
-            s =  graph[j][0]
+            s = graph[j][0]
             e = graph[j][1]
             w = graph[j][2]
             if distance[s] != INF and distance[e] > distance[s] + w:

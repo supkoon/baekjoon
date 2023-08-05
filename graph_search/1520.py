@@ -40,7 +40,7 @@ def bfs(i,j):
                     if not visited[nx][ny]:
                         heapq.heappush(queue,[-graph[nx][ny],nx,ny])
                     #이미 방문 했으면 횟수만 더해주기. 
-                    visited[nx][ny] +=visited[x][y]     
+                    visited[nx][ny] += visited[x][y]     
                     
 bfs(0,0)
 print(visited[n-1][m-1])
