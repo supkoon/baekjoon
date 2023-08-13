@@ -74,6 +74,7 @@ while(True):
                 for x,y,melt in melted:
                     graph[x][y] = max(graph[x][y]-melt,0)
 
+
     if cnt ==0:
         year = 0
         break
