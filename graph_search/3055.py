@@ -44,9 +44,8 @@ for i in range(r):
             end = (i,j)
     graph.append(line)
     
-minutes = 0
 
-def move_water(graph):
+def move_water():
     new_water = []
     for x in range(r):
         for y in range(c):
@@ -56,38 +55,39 @@ def move_water(graph):
                     if 0<=nx<r and 0<=ny<c and graph[nx][ny] not in ['D','X']:
                         new_water.append((nx,ny))
     for x, y in new_water:
-        graph[x][y] = '*'      
-    return graph          
+        graph[x][y] = '*'              
 
 
 visited = [[0] * c for _ in range(r)]
 
+minutes = 1
 def bfs():
+    global graph, minutes
     now_x,now_y = start 
     queue = deque()
     queue.append((now_x,now_y))
     visited[now_x][now_y] =  1
 
+    
     while(queue):
         x,y = queue.popleft()
-        new_graph= copy.deepcopy(graph)
-        n=1 
-        while(n<visited[x][y]):
-            new_graph = move_water(new_graph)
-            n+=1
 
+        if minutes <= visited[x][y]:
+            move_water()
+            minutes+=1
+
+        
         for dx,dy in [(-1,0),(1,0),(0,1),(0,-1)]:
             nx,ny = x+dx, y +dy
             
-            if 0<=nx<r and 0<=ny<c and new_graph[nx][ny] not in ['*','X']:
-                queue.append((nx,ny))
-                visited[nx][ny] = visited[x][y]+1
-
+            if 0<=nx<r and 0<=ny<c and graph[nx][ny] not in ['*','X']:
+                if not visited[nx][ny]:
+                    queue.append((nx,ny))
+                    visited[nx][ny] = visited[x][y]+1
+        
 bfs()
-for line in visited:
-    print(line)
 
-
-
-
-#물만 움직이는게 아니라 고슴도치 위치를 보면서 해야함. 
+if visited[end[0]][end[1]]:
+    print(visited[end[0]][end[1]]-1)
+else:
+    print('KAKTUS')
