@@ -22,8 +22,6 @@ N의 최댓값은?
 
 '''
 
-
-
 n = int(input())
 
 result = 0
@@ -33,6 +31,6 @@ for i in range(1,n+1):
         break
     result+=i
     cnt+=1
-print(result,cnt)
+print(cnt)
     
 

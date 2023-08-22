@@ -46,7 +46,6 @@ for team in combinations(range(n),n//2):
     for i,j in combinations(team2,2):
         result2 += scores[i][j]+scores[j][i]
 
-
     min_diff = min(min_diff,abs(result2-result))
 
 print(min_diff)
