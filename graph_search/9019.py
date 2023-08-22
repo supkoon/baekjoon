@@ -17,47 +17,37 @@ import sys
 from collections import deque
 t = int(input())
 
-def make_str(x):
-    x = str(x)
-    x = (4-len(x))*'0' + x
-    return x
-
 def bfs(start,end):
-    visited = [0]*10000
+    visited = [0]*10000    
     visited[start]=1
     queue = deque()
-    queue.append(start)
+    queue.append([start,''])
+
     while(queue):
-        expanded = queue.popleft()
+        expanded,path = queue.popleft()
         for idx in range(4):
+            #dslr
             if idx ==0:
                 child = (expanded *2) %10000 
-            
+                
             elif idx ==1:
-                pass 
+                child = expanded-1
+                if child<0:
+                    child = 9999
             
             elif idx ==2:
-                child = make_str(child)
+                child = expanded // 1000 + (expanded % 1000)*10
 
-            
             else:
-                child = make_str(child)
+                child = expanded // 10 + expanded%10 * 1000
+            if not visited[child] :
+                visited[child] = idx
+                queue.append([child , path+mapping[idx]])
+                if child == end:
+                    return path+mapping[idx]
 
-
-
-
-
+mapping = ['D','S','L','R']
 for case in range(t):
     a,b = map(int,sys.stdin.readline().split())
-
-
-
-
-
-
-
-
-
-
-
-
+    print(bfs(a,b))
+    
